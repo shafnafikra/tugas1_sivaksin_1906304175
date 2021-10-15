@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+
+<head>
+    <title>Tambah Pasien</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+</head>
+<body>
+<nav th:replace="fragments/fragment :: navbar"></nav>
+<div class="container">
+    <div class="card m-4 p-4">
+        <div class="card-header text-white bg-secondary">
+            <center><h4><b>Tambah Pasien Faskes</b></h4></center>
+        </div>
+        <div class="card-body">
+            <div class="justify-content-center">
+                <form th:action="@{/faskes/} + ${idFaskes} + @{/tambah/pasien}" th:object="${dokterPasien}" method="POST">
+                    Pasien : <br>
+                    <td>
+                        <select th:field="*{pasien}" class="form-control">
+                            <option th:each="pasien : ${listAllPasien}"
+                                    th:value="${pasien.idPasien}"
+                                    th:text="${pasien.namaPasien}">
+                            </option>
+                        </select>
+                    </td>
+                    <br><br>
+
+                    Dokter: <br>
+                    <td>
+                        <select th:field="*{dokter}" class="form-control">
+                            <option th:each="dokter : ${listAllDokter}"
+                                    th:value="${dokter.idDokter}"
+                                    th:text="${dokter.namaDokter}">
+                            </option>
+                        </select>
+                    </td>
+                    <br><br>
+
+                    Waktu Suntik : <br>
+                    <input required class="form-control" type="datetime-local" name="waktuSuntik" th:value="*{waktuSuntik}"/>
+                    <br><br>
+
+                    <a class="btn btn-primary" href="@{/faskes/} + ${faskes.idFaskes}">Batal</a>
+                    <button class="btn btn-primary" type="submit" name="submitFaskesPasien">Tambah</button>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<footer th:replace="fragments/fragment :: footer"></footer>
+</body>
+</html>

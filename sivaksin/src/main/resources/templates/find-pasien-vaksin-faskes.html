@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+
+<head>
+    <title>Faskes</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+</head>
+<body>
+<nav th:replace="fragments/fragment :: navbar"></nav>
+<div class="container">
+    <form th:action="@{/cari/pasien}" method="GET">
+        <table>
+            <thead>
+            <tr>
+                <td>Pilih Jenis Vaksin</td>
+                <td>Pilih Faskes</td>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>
+                    <div>
+                        <select name="jenisVaksin">
+                            <option value="">Jenis Vaksin</option>
+                            <option th:each="vaksin : ${listVaksin}" th:text="${vaksin.jenisVaksin}" th:value="${vaksin.jenisVaksin}"></option>
+                        </select>
+                    </div>
+                </td>
+                <td>
+                    <div>
+                        <select name="namaFaskes">
+                            <option value="">Nama Faskes</option>
+                            <option th:each="faskes : ${listFaskes}" th:text="${faskes.namaFaskes}" th:value="${faskes.namaFaskes}"></option>
+                        </select>
+                    </div>
+                </td>
+                <td>
+                    <button class="btn btn-primary text-white" type="submit">Cari</button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </form>
+
+    <span th:if="${listDokPas != null}">
+    <div class="card">
+        <div class="card-header text-white bg-secondary">
+            <center><h4><b>Daftar Faskes Berdasarkan Vaksin</b></h4></center>
+        </div>
+        <div class="card-body">
+        <table class="table">
+            <thead>
+            <tr>
+                <td> No </td>
+                <td> Nama </td>
+                <td> NIK </td>
+                <td> Nomor Telepon </td>
+                <td> Jenis Kelamin </td>
+                <td> Batch ID </td>
+                <td> Waktu Suntik </td>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="dokPas, iterationStatus : ${listDokPas}">
+                <td th:text="${iterationStatus.count}"></td>
+                <td th:text="${dokPas.pasien.namaPasien}"></td>
+                <td th:text="${dokPas.pasien.nik}"></td>
+                <td th:text="${dokPas.pasien.nomorTelepon}"></td>
+                <td th:text="${dokPas.pasien.jenisKelamin}"></td>
+                <td th:if="${dokPas.pasien.jenisKelamin} == 0">Laki-Laki</td>
+                <td th:if="${dokPas.pasien.jenisKelamin} == 1">Perempuan</td>
+                <td th:text="${dokPas.idBatch}"></td>
+                <td th:text="${#temporals.dayOfWeekNameShort(dokPas.waktuSuntik)} + ',' + ${#temporals.day(dokPas.waktuSuntik)} + ' ' + ${#temporals.monthName(dokPas.waktuSuntik)} + ' ' + ${#temporals.year(dokPas.waktuSuntik)} + ' ' + ${#temporals.format(dokPas.waktuSuntik, 'HH:mm')}"></td>
+
+            </tr>
+            </tbody>
+        </table>
+        </div>
+    </div>
+    </span>
+</div>
+</div>
+</body>
+</html>

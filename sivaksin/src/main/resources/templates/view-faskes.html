@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+
+<head>
+    <title>Lihat Faskes</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+</head>
+<body>
+<nav th:replace="fragments/fragment :: navbar"></nav>
+<br>
+<div class="container">
+    <div class="card">
+        <div class="card-header text-white bg-secondary">
+            <center><h4><b>Detail Faskes</b></h4></center>
+        </div>
+        <div class="card-body">
+            <div class="justify-content-center">
+                <br>
+                <p th:text="'Nama Fasilitas Kesehatan : ' + ${faskes.namaFaskes}"></p>
+                <p th:text="'Kuota : ' + ${faskes.kuota}"></p>
+                <p th:text="'Provinsi : ' + ${faskes.provinsi}"></p>
+                <p th:text="'Kabupaten : ' + ${faskes.kabupaten}"></p>
+                <p th:text="'Jam Mulai : ' + ${faskes.jamMulai}"></p>
+                <p th:text="'Jam Selesai : ' + ${faskes.jamTutup}"></p>
+                <p th:text="'Jenis Vaksin : ' + ${faskes.vaksin.jenisVaksin} + ' - ' + ${faskes.vaksin.asalNegara} + ' - ' + ${faskes.vaksin.efikasi}"></p>
+
+
+                <a class="btn btn-warning" th:href="@{/faskes/ubah/} + ${faskes.idFaskes}">Ubah</a>
+                <a class="btn btn-danger" th:href="@{/faskes/hapus/} + ${faskes.idFaskes}">Hapus</a>
+            </div>
+    </div>
+</div>
+    <br>
+    <a class="btn btn-primary" th:href="@{/faskes/} + ${faskes.idFaskes} + @{/tambah/pasien}">Tambah Pasien</a>
+    <br>
+    <br>
+    <div class="card">
+        <div class="card-header text-white bg-secondary">
+            <center><h4><b>Daftar Pasien</b></h4></center>
+        </div>
+        <div class="card-body">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>No</th>
+                    <th>Nama</th>
+                    <th>NIK</th>
+                    <th>Nomor Telepon</th>
+                    <th>Jenis Kelamin</th>
+                    <th>Tempat Lahir</th>
+                    <th>Pekerjaan</th>
+                    <th>Action</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="pasien, iterationStatus : ${listPasien}">
+                    <td th:text="${iterationStatus.count}"></td>
+                    <td th:text="${pasien.namaPasien}"></td>
+                    <td th:text="${pasien.nik}"></td>
+                    <td th:text="${pasien.nomorTelepon}"></td>
+                    <td th:if="${pasien.jenisKelamin} == 0">Laki-Laki</td>
+                    <td th:if="${pasien.jenisKelamin} == 1">Perempuan</td>
+                    <td th:text="${pasien.tempatLahir}"></td>
+                    <td th:text="${pasien.pekerjaan}"></td>
+                    <td>
+                        <a class="btn btn-primary" th:href="@{/pasien/} + ${pasien.idPasien}">Lihat</a>
+                        <a class="btn btn-warning" th:href="@{/pasien/ubah/} + ${pasien.idPasien}">Ubah</a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <footer th:replace="fragments/fragment :: footer"></footer>
+</body>
+</html>

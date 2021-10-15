@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Home</title>
+  <head th:fragment="css">
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
+  </head>
+  <head th:fragment="js">
+    <script
+            src="https://code.jquery.com/jquery-3.4.1.min.js"
+            integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFIBw8HfCJo="
+            crossorigin="anonymous"
+    ></script>
+    <script src="https://getbootstrap.com/docs/4.1/assets/js/vendor/popper.min.js"></script>
+    <script th:src="@{/js/bootstrap.min.js}"></script>
+  </head>
+</head>
+<body>
+<div class="container">
+<nav th:fragment="navbar" class="navbar navbar-expand-lg navbar-light bg-secondary">
+  <a class="navbar-brand font-weight-bold text-white" href="/"><b>SIVAKSIN</b></a>
+  <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarNavAltMarkup"
+          aria-controls="navbarNavAltMarkup"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+  >
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse">
+    <ul class="navbar-nav mr-auto">
+      <li th:classappend="${#httpServletRequest.getRequestURI().startsWith('/faskes') ? 'font-weight-bold':''}"><a class="nav-item nav-link active text-white" th:href="@{/faskes/}"><span>Faskes</span></a></li>
+      <li th:classappend="${#httpServletRequest.getRequestURI().startsWith('/pasien') ? 'font-weight-bold':''}"><a class="nav-item nav-link active text-white" th:href="@{/pasien/}"><span>Pasien</span></a></li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+          Cari
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="#">Cari Faskes berdasarkan Vaksin</a>
+          <a class="dropdown-item" href="#">“Cari Pasien Berdasarkan Jenis Vaksin dan Faskes</a>
+        </div>
+      </li>
+    </ul>
+  </div>
+</nav>
+</div>
+
+<footer th:fragment="footer" class="navbar navbar-expand-lg navbar-light bg-light">
+  <p class="mx-auto" style="text-align:center">Copyright © SiVaksin 2021</p>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+
+<head>
+    <title>Ubah Pasien</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+</head>
+<body>
+<nav th:replace="fragments/fragment :: navbar"></nav>
+<div class="container">
+    <div class="card m-4 p-4">
+        <div class="card-header text-white bg-secondary">
+            <center><h4><b>Ubah Pasien</b></h4></center>
+        </div>
+        <div class="card-body">
+            <div class="justify-content-center">
+                <form th:action="@{/pasien/ubah/}" th:object="${pasien}" method="POST">
+                    <input type="hidden" th:field="*{idPasien}" />
+
+                    Nama Pasien : <br>
+                    <input required class="form-control" type="text" name="namaPasien" th:value="*{namaPasien}"/>
+                    <br><br>
+
+                    NIK: <br>
+                    <input required class="form-control" type="text" name="nik" th:value="*{nik}"/>
+                    <br><br>
+
+                    Nomor Telepon : <br>
+                    <input required min="0" class="form-control" type="text" name="nomorTelepon" th:value="*{nomorTelepon}"/>
+                    <br><br>
+
+                    Jenis Kelamin : <br>
+                    <select name="jenisKelamin" th:field="*{jenisKelamin}"
+                            class="form-control">
+                        <option th:value="0" th:text="Laki-laki"></option>
+                        <option th:value="1" th:text="Perempuan"></option>
+                    </select>
+                    <br><br>
+
+                    Tanggal lahir : <br>
+                    <input required class="form-control" type="datetime-local" name="tanggalLahir" th:value="*{tanggalLahir}"/>
+                    <br><br>
+
+                    Tempat Lahir : <br>
+                    <input required class="form-control" type="text" name="tempatLahir" th:value="*{tempatLahir}"/>
+                    <br><br>
+
+                    Pekerjaan : <br>
+                    <input required class="form-control" type="text" name="pekerjaan" th:value="*{pekerjaan}"/>
+                    <br><br>
+
+                    <a class="btn btn-primary" href="/pasien">Batal</a>
+                    <button class="btn btn-primary" type="submit" name="submitPasien">Ubah</button>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<footer th:replace="fragments/fragment :: footer"></footer>
+</body>
+</html>
