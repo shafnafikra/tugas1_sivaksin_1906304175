@@ -13,6 +13,8 @@
             crossorigin="anonymous"
     ></script>
     <script src="https://getbootstrap.com/docs/4.1/assets/js/vendor/popper.min.js"></script>
+    <script type="text/javascript" src="Scripts/bootstrap.min.js"></script>
+    <script type="text/javascript" src="Scripts/jquery-2.1.1.min.js"></script>
     <script th:src="@{/js/bootstrap.min.js}"></script>
   </head>
 </head>
@@ -35,15 +37,17 @@
     <ul class="navbar-nav mr-auto">
       <li th:classappend="${#httpServletRequest.getRequestURI().startsWith('/faskes') ? 'font-weight-bold':''}"><a class="nav-item nav-link active text-white" th:href="@{/faskes/}"><span>Faskes</span></a></li>
       <li th:classappend="${#httpServletRequest.getRequestURI().startsWith('/pasien') ? 'font-weight-bold':''}"><a class="nav-item nav-link active text-white" th:href="@{/pasien/}"><span>Pasien</span></a></li>
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-          Cari
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">Cari Faskes berdasarkan Vaksin</a>
-          <a class="dropdown-item" href="#">“Cari Pasien Berdasarkan Jenis Vaksin dan Faskes</a>
-        </div>
-      </li>
+      <li th:classappend="${#httpServletRequest.getRequestURI().startsWith('/cari/pasien') ? 'font-weight-bold':''}"><a class="nav-item nav-link active text-white" th:href="@{/cari/pasien/}"><span>Cari Pasien</span></a></li>
+      <li th:classappend="${#httpServletRequest.getRequestURI().startsWith('/cari/faskes') ? 'font-weight-bold':''}"><a class="nav-item nav-link active text-white" th:href="@{/cari/faskes/}"><span>Cari Faskes</span></a></li>
+<!--      <li class="nav-item dropdown">-->
+<!--        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">-->
+<!--          Cari-->
+<!--        </a>-->
+<!--        <div class="dropdown-menu" aria-labelledby="navbarDropdown">-->
+<!--          <a class="dropdown-item" href="#">Cari Faskes berdasarkan Vaksin</a>-->
+<!--          <a class="dropdown-item" href="#">“Cari Pasien Berdasarkan Jenis Vaksin dan Faskes</a>-->
+<!--        </div>-->
+<!--      </li>-->
     </ul>
   </div>
 </nav>
