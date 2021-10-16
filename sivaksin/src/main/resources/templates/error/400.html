@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+
+<head th:replace="fragments/fragment :: head(title='400 Bad Request')">
+</head>
+<body>
+<nav th:replace="fragments/fragment :: navbar"></nav>
+<br>
+<div class="container">
+    <div class="card">
+        <div class="card-header text-white bg-secondary">
+            <center><h4><b>Error</b></h4></center>
+        </div>
+        <div class="card-body">
+            <h2>
+                Permintaan tidak dipahami 🙁
+            </h2>
+            <a href="/" class="btn btn-primary">Kembali</a>
+        </div>
+    </div>
+    <footer th:replace="fragments/fragment :: footer"></footer>
+</div>
+</body>
+</html>
