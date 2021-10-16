@@ -1,10 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://thymeleaf.org">
 
-<head>
-    <title>SiVaksin</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+<head th:replace="fragments/fragment :: head(title='SiVaksin')">
 </head>
 
 <body>
@@ -26,15 +23,13 @@
                 <h3 style="color:#254A74;">Daftar fitur:</h3>
                 <a class="btn btn-primary" href="/faskes">Fasilitas Kesehatan</a>
                 <a class="btn btn-primary" href="/pasien">Pasien</a>
-                <a class="btn btn-primary" href="/cari/faskes">Cari Faskes</a>
-                <a class="btn btn-primary" href="/cari/pasien">Cari Pasien</a>
                 <div class="dropdown">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Cari
                     </button>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <a class="dropdown-item" href="/cari/pasien">“Cari Pasien</a>
-                        <a class="dropdown-item" href="/cari/faskes">Cari Faskes</a>
+                        <a class="dropdown-item" href="/cari/pasien">Cari Pasien Berdasarkan Jenis Vaksin dan Faskes</a>
+                        <a class="dropdown-item" href="/cari/faskes">Cari Faskes berdasarkan Vaksin</a>
                     </div>
                 </div>
             </div>
