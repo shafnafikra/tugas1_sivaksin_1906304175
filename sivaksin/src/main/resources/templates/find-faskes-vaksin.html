@@ -9,53 +9,57 @@
 <body>
 <nav th:replace="fragments/fragment :: navbar"></nav>
 <div class="container">
-    <form th:action="@{/cari/faskes}" method="GET">
-        <br>
-        <h5>Pilih Jenis Vaksin</h5>
-        <br>
-            <div>
-                    <select name="jenisVaksin">
-                        <option value="">Jenis Vaksin</option>
-                        <option th:each="vaksin : ${listAllVaksin}" th:text="${vaksin.jenisVaksin}" th:value="${vaksin.jenisVaksin}"></option>
-                    </select>
-                <button class="btn btn-primary text-white" type="submit">Cari Faskes</button>
-                </div>
-    </form>
-</table>
-
-<span th:if="${pilihFaskes != null}">
+    <br>
     <div class="card">
-        <div class="card-header text-white bg-secondary">
-            <center><h4><b>Daftar Faskes Berdasarkan Vaksin</b></h4></center>
-        </div>
         <div class="card-body">
-        <table class="table">
-            <thead>
-            <tr>
-                <td> No </td>
-                <td> Nama </td>
-                <td> Kuota </td>
-                <td> Provinsi </td>
-                <td> Kabupaten </td>
-                <td> Jam Mulai </td>
-                <td> Jam Selesai </td>
-            </tr>
-            </thead>
-            <tbody>
-            <tr th:each="faskes, iterationStatus : ${pilihFaskes}">
-                <td th:text="${iterationStatus.count}"></td>
-                <td th:text="${faskes.namaFaskes}"></td>
-                <td th:text="${faskes.kuota}"></td>
-                <td th:text="${faskes.provinsi}"></td>
-                <td th:text="${faskes.kabupaten}"></td>
-                <td th:text="${faskes.jamMulai}"></td>
-                <td th:text="${faskes.jamTutup}"></td>
-            </tr>
-            </tbody>
-        </table>
-        </div>
-    </div>
-    </span>
+        <form th:action="@{/cari/faskes}" method="GET">
+            <br>
+            <h5>Pilih Jenis Vaksin</h5>
+            <br>
+                <div>
+                        <select name="jenisVaksin">
+                            <option value="">Jenis Vaksin</option>
+                            <option th:each="vaksin : ${listAllVaksin}" th:text="${vaksin.jenisVaksin}" th:value="${vaksin.jenisVaksin}"></option>
+                        </select>
+                    <button class="btn btn-primary text-white" type="submit">Cari Faskes</button>
+                    </div>
+        </form>
+
+
+        <span th:if="${pilihFaskes != null}">
+            <div class="card">
+                <div class="card-header text-white bg-secondary">
+                    <center><h4><b>Daftar Faskes Berdasarkan Vaksin</b></h4></center>
+                </div>
+                <div class="card-body">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <td> No </td>
+                        <td> Nama </td>
+                        <td> Kuota </td>
+                        <td> Provinsi </td>
+                        <td> Kabupaten </td>
+                        <td> Jam Mulai </td>
+                        <td> Jam Selesai </td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="faskes, iterationStatus : ${pilihFaskes}">
+                        <td th:text="${iterationStatus.count}"></td>
+                        <td th:text="${faskes.namaFaskes}"></td>
+                        <td th:text="${faskes.kuota}"></td>
+                        <td th:text="${faskes.provinsi}"></td>
+                        <td th:text="${faskes.kabupaten}"></td>
+                        <td th:text="${faskes.jamMulai}"></td>
+                        <td th:text="${faskes.jamTutup}"></td>
+                    </tr>
+                    </tbody>
+                </table>
+                </div>
+            </div>
+            </span>
+</div>
 </div>
 </div>
 </body>

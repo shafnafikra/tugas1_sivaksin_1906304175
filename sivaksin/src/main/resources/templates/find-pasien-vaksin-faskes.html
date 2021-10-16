@@ -9,41 +9,45 @@
 <body>
 <nav th:replace="fragments/fragment :: navbar"></nav>
 <div class="container">
-    <form th:action="@{/cari/pasien}" method="GET">
-        <table>
-            <thead>
-            <br>
-            <tr>
-                <td><h5>Pilih Jenis Vaksin</h5></td>
-                <td><h5>Pilih Faskes</h5></td>
-            </tr>
-            <br>
-            </thead>
-            <tbody>
-            <tr>
-                <td>
-                    <div>
-                        <select name="jenisVaksin">
-                            <option value="">Jenis Vaksin</option>
-                            <option th:each="vaksin : ${listVaksin}" th:text="${vaksin.jenisVaksin}" th:value="${vaksin.jenisVaksin}"></option>
-                        </select>
-                    </div>
-                </td>
-                <td>
-                    <div>
-                        <select name="namaFaskes">
-                            <option value="">Nama Faskes</option>
-                            <option th:each="faskes : ${listFaskes}" th:text="${faskes.namaFaskes}" th:value="${faskes.namaFaskes}"></option>
-                        </select>
-                    </div>
-                </td>
-                <td>
-                    <button class="btn btn-primary text-white" type="submit">Cari</button>
-                </td>
-            </tr>
-            </tbody>
-        </table>
-    </form>
+    <br>
+    <div class="card">
+        <div class="card-body">
+            <form th:action="@{/cari/pasien}" method="GET">
+                <table>
+                    <thead>
+                    <br>
+                    <tr>
+                        <td><h5>Pilih Jenis Vaksin</h5></td>
+                        <td><h5>Pilih Faskes</h5></td>
+                    </tr>
+                    <br>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>
+                            <div>
+                                <select name="jenisVaksin">
+                                    <option value="">Jenis Vaksin</option>
+                                    <option th:each="vaksin : ${listVaksin}" th:text="${vaksin.jenisVaksin}" th:value="${vaksin.jenisVaksin}"></option>
+                                </select>
+                            </div>
+                        </td>
+                        <td>
+                            <div>
+                                <select name="namaFaskes">
+                                    <option value="">Nama Faskes</option>
+                                    <option th:each="faskes : ${listFaskes}" th:text="${faskes.namaFaskes}" th:value="${faskes.namaFaskes}"></option>
+                                </select>
+                            </div>
+                        </td>
+                        <td>
+                            <button class="btn btn-primary text-white" type="submit">Cari</button>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </form>
+
 
     <span th:if="${listDokPas != null}">
     <div class="card">
@@ -69,7 +73,6 @@
                 <td th:text="${dokPas.pasien.namaPasien}"></td>
                 <td th:text="${dokPas.pasien.nik}"></td>
                 <td th:text="${dokPas.pasien.nomorTelepon}"></td>
-                <td th:text="${dokPas.pasien.jenisKelamin}"></td>
                 <td th:if="${dokPas.pasien.jenisKelamin} == 0">Laki-Laki</td>
                 <td th:if="${dokPas.pasien.jenisKelamin} == 1">Perempuan</td>
                 <td th:text="${dokPas.idBatch}"></td>
@@ -81,6 +84,8 @@
         </div>
     </div>
     </span>
+</div>
+</div>
 </div>
 </div>
 </body>
